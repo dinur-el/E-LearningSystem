@@ -39,10 +39,10 @@ public class QueryUtil extends CommonUtil {
 		NodeList nodeList;
 		Element element = null;
 		/*
-		 * Read the EmployeeQuery.xml file and read each query node into node
+		 * Read the StudentQuery.xml file and read each query node into node
 		 * list. It refers tag name query
 		 */
-		nodeList = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(System.getProperty("catalina.base") + "D:\\Eclipse\\Eclipse web\\E-LearningSystem\\WebContent\\WEB-INF\\StudentQuery.xml"))
+		nodeList = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(System.getProperty("catalina.base") + "\\wtpwebapps\\E-LearningSystem\\WEB-INF\\StudentQuery.xml"))
 				.getElementsByTagName(CommonConstants.TAG_NAME);
 
 		/*

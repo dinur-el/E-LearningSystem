@@ -40,7 +40,7 @@ public class CommonConstants {
 	public static final String QUERY_ID_CREATE_TABLE = "create_employee_table";
 
 	/** Constant for query id of insert employees in EmployeeQuery.xml */
-	public static final String QUERY_ID_INSERT_EMPLOYEES = "insert_employee";
+	public static final String QUERY_ID_INSERT_EMPLOYEES = "insert_student";
 
 	/** Constant for query id of get an employee in EmployeeQuery.xml */
 	public static final String QUERY_ID_GET_EMPLOYEE = "employee_by_id";

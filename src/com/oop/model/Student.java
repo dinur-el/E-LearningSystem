@@ -2,7 +2,7 @@ package com.oop.model;
 
 public class Student {
 
-	private String StudentID;
+	//private String StudentID;
 	
 	private String Name;
 
@@ -11,16 +11,16 @@ public class Student {
 	/**
 	 * @return the StudentID
 	 */
-	public String getStudentID() {
-		return StudentID;
-	}
+	//public String getStudentID() {
+	//	return StudentID;
+	//}
 
 	/**
 	 * @param studentID the studentID to set
 	 */
-	public void setStudentID(String studentID) {
-		StudentID = studentID;
-	}
+	//public void setStudentID(String studentID) {
+	//	StudentID = studentID;
+	//}
 
 	/**
 	 * @return the name
@@ -123,7 +123,8 @@ public class Student {
 	@Override
 	public String toString() {
 		
-		return "Student ID = " + StudentID + "\n" + "Student Name = " + Name + "\n" + "Email = " + Email;// + "\n"
+		return //"Student ID = " + StudentID + "\n" + ""
+				 "Student Name = " + Name + "\n" + "Email = " + Email;// + "\n"
 				//+ "Faculty Name = " + FacultyName + "\n" + "Department = " + Department + "\n" + "Designation = "
 				//+ Designation + "\n" + "Qualifications = " + Qualifications + "\n" + "Gender = " + Gender;
 	}

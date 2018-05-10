@@ -32,18 +32,20 @@ public class AddStudentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
 		Student student = new Student();
 		
-		student.setName(request.getParameter("employeeName"));
+		student.setName(request.getParameter("studentName"));
 		student.setEmail(request.getParameter("emailAddress"));
+
 
 		IStudentService iStudentService = new StudentServiceImpl();
 		iStudentService.addStudent(student);

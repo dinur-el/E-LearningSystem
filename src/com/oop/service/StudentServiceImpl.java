@@ -19,11 +19,14 @@ import com.oop.util.CommonConstants;
 import com.oop.util.CommonUtil;
 import com.oop.util.DBConnectionUtil;
 import com.oop.util.QueryUtil;
+import com.oop.util.Database;  
 
 public class StudentServiceImpl implements IStudentService {
 	/** Initialize logger */
 	public static final Logger log = Logger.getLogger(StudentServiceImpl.class.getName());
 
+	Database db = new Database();
+	
 	private static Connection connection;
 
 	private static Statement statement;
@@ -93,43 +96,69 @@ public class StudentServiceImpl implements IStudentService {
 
 		//String studentID = CommonUtil.generateIDs(getStudentIDs());
 		
+//		try {
+//			connection = DBConnectionUtil.getDBConnection();
+//			/*
+//			 * Query is available in StudentQuery.xml file and user
+//			 * insert_student key to extract value of it
+//			 */
+//			preparedStatement = connection
+//					.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_INSERT_EMPLOYEES));
+//			connection.setAutoCommit(false);
+//			
+//			//Generate student IDs
+//			//student.setStudentID(studentID);
+//			//preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, student.getStudentID());
+//			preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, student.getName());
+//			preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, student.getEmail());
+//			// Add student
+//			preparedStatement.execute();
+//			connection.commit();
+//
+//		} catch (SQLException | SAXException | IOException | ParserConfigurationException 
+//				| ClassNotFoundException e) {
+//			log.log(Level.SEVERE, e.getMessage());
+//		} finally {
+//			/*
+//			 * Close prepared statement and database connectivity at the end of
+//			 * transaction
+//			 */
+//			try {
+//				if (preparedStatement != null) {
+//					preparedStatement.close();
+//				}
+//				if (connection != null) {
+//					connection.close();
+//				}
+//			} catch (SQLException e) {
+//				log.log(Level.SEVERE, e.getMessage());
+//			}
+//		}
+		
+		db.connect();
+		
+		String name =student.getName();
+		String email =student.getEmail();
+		
+		String query = "insert into student (name, email) values (\""+name+"\",\""+email+"\")";
+		System.out.println(query);
+		
 		try {
-			connection = DBConnectionUtil.getDBConnection();
-			/*
-			 * Query is available in StudentQuery.xml file and use
-			 * insert_student key to extract value of it
-			 */
-			preparedStatement = connection
-					.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_INSERT_EMPLOYEES));
-			connection.setAutoCommit(false);
+			int status = db.createOrUpdateOrDelete(query);
 			
-			//Generate student IDs
-			//student.setStudentID(studentID);
-			//preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, student.getStudentID());
-			preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, student.getName());
-			preparedStatement.setString(CommonConstants.COLUMN_INDEX_THREE, student.getEmail());
-			// Add student
-			preparedStatement.execute();
-			connection.commit();
-
-		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
-			log.log(Level.SEVERE, e.getMessage());
-		} finally {
-			/*
-			 * Close prepared statement and database connectivity at the end of
-			 * transaction
-			 */
-			try {
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				log.log(Level.SEVERE, e.getMessage());
+			//ResultSet  rs = db.select("");
+			
+			if (status == 1)
+			{
+				
 			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		db.disconnect();
 	}
 
 	/**
@@ -272,7 +301,7 @@ public class StudentServiceImpl implements IStudentService {
 
 			while (resultSet.next()) {
 				Student student = new Student();
-				student.setStudentID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				//student.setStudentID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
 				student.setName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
 				student.setEmail(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
 				
@@ -322,13 +351,14 @@ public class StudentServiceImpl implements IStudentService {
 			try {
 				connection = DBConnectionUtil.getDBConnection();
 				preparedStatement = connection
-						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_UPDATE_EMPLOYEE));
+						.prepareStatement("insert into student (name, email) values (\"dinura\",\"dnw\")");//QueryUtil.queryByID(CommonConstants.QUERY_ID_UPDATE_EMPLOYEE));
 				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, student.getName());
 				preparedStatement.setString(CommonConstants.COLUMN_INDEX_FIVE, student.getEmail());
-				preparedStatement.setString(CommonConstants.COLUMN_INDEX_EIGHT, student.getStudentID());
+				//preparedStatement.setString(CommonConstants.COLUMN_INDEX_EIGHT, student.getStudentID());
 				preparedStatement.executeUpdate();
+				
 
-			} catch (SQLException | SAXException | IOException | ParserConfigurationException
+			} catch (SQLException //| SAXException | IOException | ParserConfigurationException
 					| ClassNotFoundException e) {
 				log.log(Level.SEVERE, e.getMessage());
 			} finally {
