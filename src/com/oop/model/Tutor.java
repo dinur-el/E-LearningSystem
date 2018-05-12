@@ -1,6 +1,6 @@
 package com.oop.model;
 
-public class Student {
+public class Tutor {
 
 	private String id;
 	
@@ -8,22 +8,20 @@ public class Student {
 
 	private String email;
 	
-	private String username;
-	
-	private String password;
+	private String specialization; 
 	
 	/**
-	 * @return the id
+	 * @return the StudentID
 	 */
-	public String getStudentID() {
+	public String getTutorID() {
 		return id;
 	}
 
 	/**
 	 * @param studentID the studentID to set
 	 */
-	public void setStudentID(String studentID) {
-		id = studentID;
+	public void setTutorID(String tutorID) {
+		id = tutorID;
 	}
 
 	/**
@@ -41,18 +39,18 @@ public class Student {
 	}
 
 	/**
-	 * @return the designation
+	 * @return the specialization
 	 */
-//	public String getDesignation() {
-//		return Designation;
-//	}
+	public String getSpecialization() {
+		return specialization;
+	}
 
 	/**
-	 * @param designation the designation to set
+	 * @param specialization the specialization to set
 	 */
-//	public void setDesignation(String designation) {
-//		Designation = designation;
-//	}
+	public void setSpecialzation(String specialization) {
+		this.specialization = specialization;
+	}
 
 	/**
 	 * @return the facultyName
@@ -127,9 +125,10 @@ public class Student {
 	@Override
 	public String toString() {
 		
-		return //"Student ID = " + id + "\n" + ""
-				 "Student name = " + name + "\n" + "email = " + email;// + "\n"
-				//+ "Faculty name = " + FacultyName + "\n" + "Department = " + Department + "\n" + "Designation = "
+		return //"Student ID = " + StudentID + "\n" + ""
+				 "Tutor Name = " + name + "\n" + "Email = " + email + "\n"+ "Specialization = " + specialization;
+				//+ "\n" + "Department = " + Department + "\n" + "Designation = "
 				//+ Designation + "\n" + "Qualifications = " + Qualifications + "\n" + "Gender = " + Gender;
 	}
+
 }

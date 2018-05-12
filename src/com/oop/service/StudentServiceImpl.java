@@ -275,7 +275,9 @@ public class StudentServiceImpl implements IStudentService {
 
 		ArrayList<Student> studentList = new ArrayList<Student>();
 		try {
-			connection = DBConnectionUtil.getDBConnection();
+			db.connect();
+			String query;
+			//connection = DBConnectionUtil.getDBConnection();
 			/*
 			 * Before fetching student it checks whether student ID is
 			 * available
@@ -285,31 +287,33 @@ public class StudentServiceImpl implements IStudentService {
 				 * Get student by ID query will be retrieved from
 				 * StudentQuery.xml
 				 */
-				preparedStatement = connection
-						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_GET_EMPLOYEE));
-				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, studentID);
+				
+				query = "select * from student where id = \""+studentID+"\"";
+				System.out.println(query);
+				
 			}
 			/*
 			 * If student ID is not provided for get student option it display
 			 * all students
 			 */
 			else {
-				preparedStatement = connection
-						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_ALL_EMPLOYEES));
+				query = "select * from student where id = \""+studentID+"\"";
+				System.out.println(query);
 			}
-			ResultSet resultSet = preparedStatement.executeQuery();
+			ResultSet resultSet = db.select(query);
 
 			while (resultSet.next()) {
 				Student student = new Student();
-				//student.setStudentID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+	
+				student.setStudentID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
 				student.setName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
 				student.setEmail(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
 				
 				studentList.add(student);
 			}
 
-		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
-			log.log(Level.SEVERE, e.getMessage());
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
 			/*
 			 * Close prepared statement and database connectivity at the end of

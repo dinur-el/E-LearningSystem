@@ -21,7 +21,8 @@
 				<td><input type="text" name="emailAddress" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Add Student" class="add-button" /> </td>
+				<a href="WebContent/WEB-INF/views/ListStudents.jsp">Student List</a>
+				<!--  <td colspan="2"><input type="submit" value="Add Student" class="add-button" /> </td>-->
 			</tr>
 			<tr>	
 				<td colspan="2"><input type="reset" value="Reset" class="reset-button" /></td>
