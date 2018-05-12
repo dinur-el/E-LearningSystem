@@ -2,7 +2,7 @@ package com.oop.model;
 
 public class Tutor {
 
-	private String id;
+	private int id;
 	
 	private String name;
 
@@ -11,124 +11,68 @@ public class Tutor {
 	private String specialization; 
 	
 	/**
-	 * @return the StudentID
+	 * @return the id
 	 */
-	public String getTutorID() {
-		return id;
+	public int getId() {
+		return this.id;
 	}
 
 	/**
-	 * @param studentID the studentID to set
+	 * @param id the id to set
 	 */
-	public void setTutorID(String tutorID) {
-		id = tutorID;
+	public void setTutorID(int newId) {
+		this.id = newId;
 	}
 
 	/**
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String newName) {
+		this.name = newName;
 	}
-
-	/**
-	 * @return the specialization
-	 */
-	public String getSpecialization() {
-		return specialization;
-	}
-
-	/**
-	 * @param specialization the specialization to set
-	 */
-	public void setSpecialzation(String specialization) {
-		this.specialization = specialization;
-	}
-
-	/**
-	 * @return the facultyName
-	 */
-//	public String getFacultyName() {
-//		return FacultyName;
-//	}
-
-	/**
-	 * @param facultyName the facultyName to set
-	 */
-//	public void setFacultyName(String facultyName) {
-//		FacultyName = facultyName;
-//	}
-
-	/**
-	 * @return the department
-	 */
-//	public String getDepartment() {
-//		return Department;
-//	}
-
-	/**
-	 * @param department the department to set
-	 */
-//	public void setDepartment(String department) {
-//		Department = department;
-//	}
 
 	/**
 	 * @return the email
 	 */
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	/**
 	 * @param email the email to set
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String newEmail) {
+		this.email = newEmail;
+	}
+	
+	/**
+	 * @return the specialization
+	 */
+	public String getSpecialization() {
+		return this.specialization;
 	}
 
 	/**
-	 * @return the qualifications
+	 * @param specialization the specialization to set
 	 */
-//	public String getQualifications() {
-//		return Qualifications;
-//	}
-
-	/**
-	 * @param qualifications the qualifications to set
-	 */
-//	public void setQualifications(String qualifications) {
-//		Qualifications = qualifications;
-//	}
-
-	/**
-	 * @return the gender
-	 */
-//	public String getGender() {
-//		return Gender;
-//	}
-
-	/**
-	 * @param gender the gender to set
-	 */
-//	public void setGender(String gender) {
-//		Gender = gender;
-//	}
+	public void setSpecialzation(String newSpecialization) {
+		this.specialization = newSpecialization;
+	}
 
 	@Override
 	public String toString() {
 		
-		return //"Student ID = " + StudentID + "\n" + ""
-				 "Tutor Name = " + name + "\n" + "Email = " + email + "\n"+ "Specialization = " + specialization;
-				//+ "\n" + "Department = " + Department + "\n" + "Designation = "
-				//+ Designation + "\n" + "Qualifications = " + Qualifications + "\n" + "Gender = " + Gender;
+		return "Tutor ID = " + this.id + "\n" 
+			   +"Tutor Name = " + this.name + "\n" 
+			   +"Tutor Email = " + this.email + "\n"
+			   +"Tutor Specialization = " + this.specialization + "\n";
 	}
 
 }

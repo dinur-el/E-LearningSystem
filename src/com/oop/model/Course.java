@@ -13,6 +13,13 @@ public class Course {
 	public int getID() {
 		return this.id;
 	}
+	
+	/**
+	 * @param id the id to set
+	 */
+	public void setID(int newId) {
+		this.id = newId;
+	}
 
 	/**
 	 * @return the Name

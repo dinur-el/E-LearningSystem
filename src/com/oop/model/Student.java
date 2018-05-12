@@ -2,7 +2,7 @@ package com.oop.model;
 
 public class Student {
 
-	private String id;
+	private int id;
 	
 	private String name;
 
@@ -15,121 +15,80 @@ public class Student {
 	/**
 	 * @return the id
 	 */
-	public String getStudentID() {
-		return id;
+	public int getID() {
+		return this.id;
 	}
 
 	/**
-	 * @param studentID the studentID to set
+	 * @param id the id to set
 	 */
-	public void setStudentID(String studentID) {
-		id = studentID;
+	public void setID(int newId) {
+		this.id = newId;
 	}
 
 	/**
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String newName) {
+		this.name = newName;
 	}
-
-	/**
-	 * @return the designation
-	 */
-//	public String getDesignation() {
-//		return Designation;
-//	}
-
-	/**
-	 * @param designation the designation to set
-	 */
-//	public void setDesignation(String designation) {
-//		Designation = designation;
-//	}
-
-	/**
-	 * @return the facultyName
-	 */
-//	public String getFacultyName() {
-//		return FacultyName;
-//	}
-
-	/**
-	 * @param facultyName the facultyName to set
-	 */
-//	public void setFacultyName(String facultyName) {
-//		FacultyName = facultyName;
-//	}
-
-	/**
-	 * @return the department
-	 */
-//	public String getDepartment() {
-//		return Department;
-//	}
-
-	/**
-	 * @param department the department to set
-	 */
-//	public void setDepartment(String department) {
-//		Department = department;
-//	}
-
+	
 	/**
 	 * @return the email
 	 */
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	/**
 	 * @param email the email to set
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String newEmail) {
+		this.email = newEmail;
+	}
+	
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return this.username;
 	}
 
 	/**
-	 * @return the qualifications
+	 * @param username the username to set
 	 */
-//	public String getQualifications() {
-//		return Qualifications;
-//	}
+	public void setUsername(String newUsername) {
+		this.username = newUsername;
+	}
 
 	/**
-	 * @param qualifications the qualifications to set
+	 * @return the password
 	 */
-//	public void setQualifications(String qualifications) {
-//		Qualifications = qualifications;
-//	}
+	public String getPassword() {
+		return this.password;
+	}
 
 	/**
-	 * @return the gender
+	 * @param password the password to set
 	 */
-//	public String getGender() {
-//		return Gender;
-//	}
-
-	/**
-	 * @param gender the gender to set
-	 */
-//	public void setGender(String gender) {
-//		Gender = gender;
-//	}
+	public void setPassword(String newPassword) {
+		this.password = newPassword;
+	}
 
 	@Override
 	public String toString() {
 		
-		return //"Student ID = " + id + "\n" + ""
-				 "Student name = " + name + "\n" + "email = " + email;// + "\n"
-				//+ "Faculty name = " + FacultyName + "\n" + "Department = " + Department + "\n" + "Designation = "
-				//+ Designation + "\n" + "Qualifications = " + Qualifications + "\n" + "Gender = " + Gender;
-	}
+		return "Student ID = " + this.id + "\n" 
+				+"Student Name = " + this.name + "\n" 
+				+"Student Email = " + this.email + "\n"
+				+"Student Username = " + this.username + "\n"
+				+"Student Password = " + this.password + "\n";
+		}
 }
