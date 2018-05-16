@@ -139,8 +139,10 @@ public class StudentServiceImpl implements IStudentService {
 		
 		String name =student.getName();
 		String email =student.getEmail();
+		String username =student.getUsername();
+		String password =student.getPassword();
 		
-		String query = "insert into student (name, email) values (\""+name+"\",\""+email+"\")";
+		String query = "insert into student (name, email, username, password) values (\""+name+"\",\""+email+"\",\""+username+"\",\""+password+"\")";
 		System.out.println(query);
 		
 		try {
@@ -217,31 +219,54 @@ public class StudentServiceImpl implements IStudentService {
 			/*
 			 * Remove student query will be retrieved from StudentQuery.xml
 			 */
-			try {
-				connection = DBConnectionUtil.getDBConnection();
-				preparedStatement = connection
-						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_REMOVE_EMPLOYEE));
-				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, studentID);
-				preparedStatement.executeUpdate();
-			} catch (SQLException | SAXException | IOException | ParserConfigurationException
-					| ClassNotFoundException e) {
-				log.log(Level.SEVERE, e.getMessage());
-			} finally {
+//			try {
+//				connection = DBConnectionUtil.getDBConnection();
+//				preparedStatement = connection
+//						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_REMOVE_EMPLOYEE));
+//				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, studentID);
+//				preparedStatement.executeUpdate();
+//			} catch (SQLException | SAXException | IOException | ParserConfigurationException
+//					| ClassNotFoundException e) {
+//				log.log(Level.SEVERE, e.getMessage());
+//			} finally {
 				/*
 				 * Close prepared statement and database connectivity at the end
 				 * of transaction
 				 */
-				try {
-					if (preparedStatement != null) {
-						preparedStatement.close();
-					}
-					if (connection != null) {
-						connection.close();
-					}
-				} catch (SQLException e) {
-					log.log(Level.SEVERE, e.getMessage());
+//				try {
+//					if (preparedStatement != null) {
+//						preparedStatement.close();
+//					}
+//					if (connection != null) {
+//						connection.close();
+//					}
+//				} catch (SQLException e) {
+//					log.log(Level.SEVERE, e.getMessage());
+//				}
+//			}
+			
+			db.connect();
+			
+			
+			String query = "delete from student where student.id = \""+studentID+"\"";
+			System.out.println(query);
+			
+			try {
+				int status = db.createOrUpdateOrDelete(query);
+				
+				//ResultSet  rs = db.select("");
+				
+				if (status == 1)
+				{
+					
 				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
+			db.disconnect();
 		}
 	}
 
@@ -297,7 +322,7 @@ public class StudentServiceImpl implements IStudentService {
 			 * all students
 			 */
 			else {
-				query = "select * from student where id = \""+studentID+"\"";
+				query = "select * from student";
 				System.out.println(query);
 			}
 			ResultSet resultSet = db.select(query);
@@ -305,9 +330,11 @@ public class StudentServiceImpl implements IStudentService {
 			while (resultSet.next()) {
 				Student student = new Student();
 	
-				student.setStudentID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				student.setID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
 				student.setName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
 				student.setEmail(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
+				student.setUsername(resultSet.getString(CommonConstants.COLUMN_INDEX_FOUR));
+				student.setPassword(resultSet.getString(CommonConstants.COLUMN_INDEX_FIVE));
 				
 				studentList.add(student);
 			}
@@ -352,35 +379,66 @@ public class StudentServiceImpl implements IStudentService {
 			/*
 			 * Update student query will be retrieved from StudentQuery.xml
 			 */
-			try {
-				connection = DBConnectionUtil.getDBConnection();
-				preparedStatement = connection
-						.prepareStatement("insert into student (name, email) values (\"dinura\",\"dnw\")");//QueryUtil.queryByID(CommonConstants.QUERY_ID_UPDATE_EMPLOYEE));
-				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, student.getName());
-				preparedStatement.setString(CommonConstants.COLUMN_INDEX_FIVE, student.getEmail());
-				//preparedStatement.setString(CommonConstants.COLUMN_INDEX_EIGHT, student.getStudentID());
-				preparedStatement.executeUpdate();
-				
-
-			} catch (SQLException //| SAXException | IOException | ParserConfigurationException
-					| ClassNotFoundException e) {
-				log.log(Level.SEVERE, e.getMessage());
-			} finally {
+//			try {
+//				connection = DBConnectionUtil.getDBConnection();
+//				preparedStatement = connection
+//						.prepareStatement("insert into student (name, email) values (\"dinura\",\"dnw\")");//QueryUtil.queryByID(CommonConstants.QUERY_ID_UPDATE_EMPLOYEE));
+//				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, student.getName());
+//				preparedStatement.setString(CommonConstants.COLUMN_INDEX_FIVE, student.getEmail());
+//				//preparedStatement.setString(CommonConstants.COLUMN_INDEX_EIGHT, student.getStudentID());
+//				preparedStatement.executeUpdate();
+//				
+//
+//			} catch (SQLException //| SAXException | IOException | ParserConfigurationException
+//					| ClassNotFoundException e) {
+//				log.log(Level.SEVERE, e.getMessage());
+//			} finally {
 				/*
 				 * Close prepared statement and database connectivity at the end
 				 * of transaction
 				 */
-				try {
-					if (preparedStatement != null) {
-						preparedStatement.close();
-					}
-					if (connection != null) {
-						connection.close();
-					}
-				} catch (SQLException e) {
-					log.log(Level.SEVERE, e.getMessage());
+//				try {
+//					if (preparedStatement != null) {
+//						preparedStatement.close();
+//					}
+//					if (connection != null) {
+//						connection.close();
+//					}
+//				} catch (SQLException e) {
+//					log.log(Level.SEVERE, e.getMessage());
+//				}
+//			}
+			
+			db.connect();
+			
+			String name =student.getName();
+			String email =student.getEmail();
+			String username =student.getUsername();
+			String password =student.getPassword();
+			
+			
+			String query = "update student as s" + 
+					       "set s.name = \""+name+"\", s.email = \""+email+"\", s.username = \""+username+"\", s.password = \""+password+"\"" + 
+					       "where e.employeeID = \""+studentID+"\"";
+			System.out.println(query);
+			
+			try {
+				int status = db.createOrUpdateOrDelete(query);
+				
+				//ResultSet  rs = db.select("");
+				
+				if (status == 1)
+				{
+					
 				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
+			db.disconnect();
+			
 		}
 		// Get the updated student
 		return getStudentByID(studentID);
@@ -411,17 +469,51 @@ public class StudentServiceImpl implements IStudentService {
 		/*
 		 * List of student IDs will be retrieved from StudentQuery.xml
 		 */
+//		try {
+//			connection = DBConnectionUtil.getDBConnection();
+//			preparedStatement = connection
+//					.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_GET_EMPLOYEE_IDS));
+//			ResultSet resultSet = preparedStatement.executeQuery();
+//			while (resultSet.next()) {
+//				arrayList.add(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+//			}
+//		} catch (SQLException | SAXException | IOException | ParserConfigurationException
+//				| ClassNotFoundException e) {
+//			log.log(Level.SEVERE, e.getMessage());
+//		} finally {
+//			/*
+//			 * Close prepared statement and database connectivity at the end of
+//			 * transaction
+//			 */
+//			try {
+//				if (preparedStatement != null) {
+//					preparedStatement.close();
+//				}
+//				if (connection != null) {
+//					connection.close();
+//				}
+//			} catch (SQLException e) {
+//				log.log(Level.SEVERE, e.getMessage());
+//			}
+//		}
+		
 		try {
-			connection = DBConnectionUtil.getDBConnection();
-			preparedStatement = connection
-					.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_GET_EMPLOYEE_IDS));
-			ResultSet resultSet = preparedStatement.executeQuery();
+			db.connect();
+			String query;
+		
+				
+			query = "select s.id from student as s";
+			System.out.println(query);
+				
+			
+			ResultSet resultSet = db.select(query);
+
 			while (resultSet.next()) {
 				arrayList.add(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
 			}
-		} catch (SQLException | SAXException | IOException | ParserConfigurationException
-				| ClassNotFoundException e) {
-			log.log(Level.SEVERE, e.getMessage());
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
 			/*
 			 * Close prepared statement and database connectivity at the end of

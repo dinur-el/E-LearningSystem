@@ -69,6 +69,6 @@ public class Course {
 		return "Course ID = " + id + "\n" 
 			   +"Course Name = " + name + "\n" 
 			   +"Course Duration = " + duration + "\n"
-			   +"Tutor ID = " + tutorId + "\n";
+			   +"Lecturer ID = " + tutorId + "\n";
 	}
 }

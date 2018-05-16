@@ -2,7 +2,7 @@ package com.oop.model;
 
 public class Student {
 
-	private int id;
+	private String id;
 	
 	private String name;
 
@@ -15,14 +15,14 @@ public class Student {
 	/**
 	 * @return the id
 	 */
-	public int getID() {
+	public String getID() {
 		return this.id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setID(int newId) {
+	public void setID(String newId) {
 		this.id = newId;
 	}
 

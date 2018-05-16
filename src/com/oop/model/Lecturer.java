@@ -1,6 +1,6 @@
 package com.oop.model;
 
-public class Tutor {
+public class Lecturer {
 
 	private int id;
 	
@@ -69,10 +69,10 @@ public class Tutor {
 	@Override
 	public String toString() {
 		
-		return "Tutor ID = " + this.id + "\n" 
-			   +"Tutor Name = " + this.name + "\n" 
-			   +"Tutor Email = " + this.email + "\n"
-			   +"Tutor Specialization = " + this.specialization + "\n";
+		return "Lecturer ID = " + this.id + "\n" 
+			   +"Lecturer Name = " + this.name + "\n" 
+			   +"Lecturer Email = " + this.email + "\n"
+			   +"Lecturer Specialization = " + this.specialization + "\n";
 	}
 
 }

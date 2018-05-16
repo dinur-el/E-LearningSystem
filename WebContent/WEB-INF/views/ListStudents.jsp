@@ -25,7 +25,7 @@
 		 <caption><h2>List of Students</h2></caption>
 		 <a href="homeView.jsp">Add Student</a>
 		  <tr>
-                <th>Student ID</th>
+                <th>Student ID</th>		
                 <th>Student Name</th>
                 <th>Address</th>
                 <th>Select</th>
