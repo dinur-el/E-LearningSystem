@@ -14,16 +14,15 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import com.oop.model.Student;
+import com.oop.model.Course;
 import com.oop.util.CommonConstants;
-import com.oop.util.CommonUtil;
 import com.oop.util.DBConnectionUtil;
+import com.oop.util.Database;
 import com.oop.util.QueryUtil;
-import com.oop.util.Database;  
 
-public class StudentServiceImpl implements IStudentService {
+public class CourseServiceImpl implements ICourseService {
 	/** Initialize logger */
-	public static final Logger log = Logger.getLogger(StudentServiceImpl.class.getName());
+	public static final Logger log = Logger.getLogger(CourseServiceImpl.class.getName());
 
 	Database db = new Database();
 	
@@ -33,14 +32,14 @@ public class StudentServiceImpl implements IStudentService {
 
 	//static{
 		//create table or drop if exist
-		//createStudentTable();
+		//createCourseTable();
 	//}
 	
 	private PreparedStatement preparedStatement;
 
 	/**
-	 * This method initially drop existing Students table in the database and
-	 * recreate table structure to insert student entries
+	 * This method initially drop existing Courses table in the database and
+	 * recreate table structure to insert course entries
 	 * 
 	 * @throws SQLException
 	 *             - Thrown when database access error occurs or this method is
@@ -59,7 +58,7 @@ public class StudentServiceImpl implements IStudentService {
 	 * 
 	 */
 	
-	public static void createStudentTable() {
+	public static void createCourseTable() {
 
 		try {
 			connection = DBConnectionUtil.getDBConnection();
@@ -67,7 +66,7 @@ public class StudentServiceImpl implements IStudentService {
 			// Drop table if already exists and as per SQL query available in
 			// Query.xml
 			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_DROP_TABLE));
-			// Create new students table as per SQL query available in
+			// Create new courses table as per SQL query available in
 			// Query.xml
 			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_CREATE_TABLE));
 
@@ -78,7 +77,7 @@ public class StudentServiceImpl implements IStudentService {
 	
 	
 	/**
-	 * Add set of students for as a batch from the selected student List
+	 * Add set of courses for as a batch from the selected course List
 	 * 
 	 * @throws SQLException
 	 *             - Thrown when database access error occurs or this method is
@@ -92,26 +91,26 @@ public class StudentServiceImpl implements IStudentService {
 	 * 
 	 */
 	@Override
-	public void addStudent(Student student) {
+	public void addCourse(Course course) {
 
-		//String studentID = CommonUtil.generateIDs(getStudentIDs());
+		//String courseID = CommonUtil.generateIDs(getCourseIDs());
 		
 //		try {
 //			connection = DBConnectionUtil.getDBConnection();
 //			/*
-//			 * Query is available in StudentQuery.xml file and user
-//			 * insert_student key to extract value of it
+//			 * Query is available in CourseQuery.xml file and user
+//			 * insert_course key to extract value of it
 //			 */
 //			preparedStatement = connection
 //					.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_INSERT_EMPLOYEES));
 //			connection.setAutoCommit(false);
 //			
-//			//Generate student IDs
-//			//student.setStudentID(studentID);
-//			//preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, student.getStudentID());
-//			preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, student.getName());
-//			preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, student.getEmail());
-//			// Add student
+//			//Generate course IDs
+//			//course.setCourseID(courseID);
+//			//preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, course.getCourseID());
+//			preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, course.getName());
+//			preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, course.getEmail());
+//			// Add course
 //			preparedStatement.execute();
 //			connection.commit();
 //
@@ -137,12 +136,11 @@ public class StudentServiceImpl implements IStudentService {
 		
 		db.connect();
 		
-		String name =student.getName();
-		String email =student.getEmail();
-		String username =student.getUsername();
-		String password =student.getPassword();
+		String name =course.getName();
+		String duration =course.getDuration();
+		String lecturer =course.getLecturerId();
 		
-		String query = "insert into student (name, email, username, password) values (\""+name+"\",\""+email+"\",\""+username+"\",\""+password+"\")";
+		String query = "insert into course (name, duration, tutor_id) values (\""+name+"\",\""+duration+"\",\""+lecturer+"\")";
 		System.out.println(query);
 		
 		try {
@@ -156,7 +154,7 @@ public class StudentServiceImpl implements IStudentService {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -164,38 +162,38 @@ public class StudentServiceImpl implements IStudentService {
 	}
 
 	/**
-	 * Student details can be retrieved based on the provided student ID
+	 * Course details can be retrieved based on the provided course ID
 	 * 
-	 * @param studentID
-	 *            - student details are filtered based on the ID
+	 * @param courseID
+	 *            - course details are filtered based on the ID
 	 * 
-	 * @see #actionOnStudent()
+	 * @see #actionOnCourse()
 	 */
 	@Override
-	public Student getStudentByID(String studentID) {
+	public Course getCourseByID(String courseID) {
 
-		return actionOnStudent(studentID).get(0);
+		return actionOnCourse(courseID).get(0);
 	}
 	
 	/**
-	 * Get all list of students
+	 * Get all list of courses
 	 * 
-	 * @return ArrayList<Student> 
-	 * 						- Array of student list will be return
+	 * @return ArrayList<Course> 
+	 * 						- Array of course list will be return
 	 * 
-	 * @see #actionOnStudent()
+	 * @see #actionOnCourse()
 	 */
 	@Override
-	public ArrayList<Student> getStudents() {
+	public ArrayList<Course> getCourses() {
 		
-		return actionOnStudent(null);
+		return actionOnCourse(null);
 	}
 
 	/**
-	 * This method delete an student based on the provided ID
+	 * This method delete an course based on the provided ID
 	 * 
-	 * @param studentID
-	 *            - Delete student according to the filtered student details
+	 * @param courseID
+	 *            - Delete course according to the filtered course details
 	 * @throws SQLException
 	 *             - Thrown when database access error occurs or this method is
 	 *             called on a closed connection
@@ -212,18 +210,18 @@ public class StudentServiceImpl implements IStudentService {
 	 *             - Service is not available
 	 */
 	@Override
-	public void removeStudent(String studentID) {
+	public void removeCourse(String courseID) {
 
-		// Before deleting check whether student ID is available
-		if (studentID != null && !studentID.isEmpty()) {
+		// Before deleting check whether course ID is available
+		if (courseID != null && !courseID.isEmpty()) {
 			/*
-			 * Remove student query will be retrieved from StudentQuery.xml
+			 * Remove course query will be retrieved from CourseQuery.xml
 			 */
 //			try {
 //				connection = DBConnectionUtil.getDBConnection();
 //				preparedStatement = connection
 //						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_REMOVE_EMPLOYEE));
-//				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, studentID);
+//				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, courseID);
 //				preparedStatement.executeUpdate();
 //			} catch (SQLException | SAXException | IOException | ParserConfigurationException
 //					| ClassNotFoundException e) {
@@ -248,7 +246,7 @@ public class StudentServiceImpl implements IStudentService {
 			db.connect();
 			
 			
-			String query = "delete from student where student.id = \""+studentID+"\"";
+			String query = "delete from course where course.id = \""+courseID+"\"";
 			System.out.println(query);
 			
 			try {
@@ -271,12 +269,12 @@ public class StudentServiceImpl implements IStudentService {
 	}
 
 	/**
-	 * This performs GET student by ID and Display all students
+	 * This performs GET course by ID and Display all courses
 	 * 
-	 * @param studentID
-	 *            ID of the student to remove or select from the list
+	 * @param courseID
+	 *            ID of the course to remove or select from the list
 
-	 * @return ArrayList<Student> Array of student list will be return
+	 * @return ArrayList<Course> Array of course list will be return
 	 * 
 	 * @throws SQLException
 	 *             - Thrown when database access error occurs or this method is
@@ -293,50 +291,49 @@ public class StudentServiceImpl implements IStudentService {
 	 * @throws NullPointerException
 	 *             - Service is not available
 	 * 
-	 * @see #getStudents()
-	 * @see #getStudentByID(String)
+	 * @see #getCourses()
+	 * @see #getCourseByID(String)
 	 */
-	private ArrayList<Student> actionOnStudent(String studentID) {
+	private ArrayList<Course> actionOnCourse(String courseID) {
 
-		ArrayList<Student> studentList = new ArrayList<Student>();
+		ArrayList<Course> courseList = new ArrayList<Course>();
 		try {
 			db.connect();
 			String query;
 			//connection = DBConnectionUtil.getDBConnection();
 			/*
-			 * Before fetching student it checks whether student ID is
+			 * Before fetching course it checks whether course ID is
 			 * available
 			 */
-			if (studentID != null && !studentID.isEmpty()) {
+			if (courseID != null && !courseID.isEmpty()) {
 				/*
-				 * Get student by ID query will be retrieved from
-				 * StudentQuery.xml
+				 * Get course by ID query will be retrieved from
+				 * CourseQuery.xml
 				 */
 				
-				query = "select * from student where id = \""+studentID+"\"";
+				query = "select * from course where id = \""+courseID+"\"";
 				System.out.println(query);
 				
 			}
 			/*
-			 * If student ID is not provided for get student option it display
-			 * all students
+			 * If course ID is not provided for get course option it display
+			 * all courses
 			 */
 			else {
-				query = "select * from student";
+				query = "select * from course";
 				System.out.println(query);
 			}
 			ResultSet resultSet = db.select(query);
 
 			while (resultSet.next()) {
-				Student student = new Student();
+				Course course = new Course();
 	
-				student.setID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
-				student.setName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
-				student.setEmail(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
-				student.setUsername(resultSet.getString(CommonConstants.COLUMN_INDEX_FOUR));
-				student.setPassword(resultSet.getString(CommonConstants.COLUMN_INDEX_FIVE));
+				course.setID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				course.setName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				course.setDuration(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
+				course.setLecturerId(resultSet.getString(CommonConstants.COLUMN_INDEX_FOUR));
 				
-				studentList.add(student);
+				courseList.add(course);
 			}
 
 		} catch (SQLException e) {
@@ -357,35 +354,35 @@ public class StudentServiceImpl implements IStudentService {
 				log.log(Level.SEVERE, e.getMessage());
 			}
 		}
-		return studentList;
+		return courseList;
 	}
 
 	/**
-	 * Get the updated student
+	 * Get the updated course
 	 * 
-	 * @param studentID
-	 *            ID of the student to remove or select from the list
+	 * @param courseID
+	 *            ID of the course to remove or select from the list
 	 * 
-	 * @return return the Student object
+	 * @return return the Course object
 	 * 
 	 */
 	@Override
-	public Student updateStudent(String studentID, Student student) {
+	public Course updateCourse(String courseID, Course course) {
 
 		/*
-		 * Before fetching student it checks whether student ID is available
+		 * Before fetching course it checks whether course ID is available
 		 */
-		if (studentID != null && !studentID.isEmpty()) {
+		if (courseID != null && !courseID.isEmpty()) {
 			/*
-			 * Update student query will be retrieved from StudentQuery.xml
+			 * Update course query will be retrieved from CourseQuery.xml
 			 */
 //			try {
 //				connection = DBConnectionUtil.getDBConnection();
 //				preparedStatement = connection
-//						.prepareStatement("insert into student (name, email) values (\"dinura\",\"dnw\")");//QueryUtil.queryByID(CommonConstants.QUERY_ID_UPDATE_EMPLOYEE));
-//				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, student.getName());
-//				preparedStatement.setString(CommonConstants.COLUMN_INDEX_FIVE, student.getEmail());
-//				//preparedStatement.setString(CommonConstants.COLUMN_INDEX_EIGHT, student.getStudentID());
+//						.prepareStatement("insert into course (name, email) values (\"dinura\",\"dnw\")");//QueryUtil.queryByID(CommonConstants.QUERY_ID_UPDATE_EMPLOYEE));
+//				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, course.getName());
+//				preparedStatement.setString(CommonConstants.COLUMN_INDEX_FIVE, course.getEmail());
+//				//preparedStatement.setString(CommonConstants.COLUMN_INDEX_EIGHT, course.getCourseID());
 //				preparedStatement.executeUpdate();
 //				
 //
@@ -411,15 +408,14 @@ public class StudentServiceImpl implements IStudentService {
 			
 			db.connect();
 			
-			String name =student.getName();
-			String email =student.getEmail();
-			String username =student.getUsername();
-			String password =student.getPassword();
+			String name =course.getName();
+			String duration =course.getDuration();
+			String lecturer =course.getLecturerId();
 			
 			
-			String query = "update student as s" + 
-					       "set s.name = \""+name+"\", s.email = \""+email+"\", s.username = \""+username+"\", s.password = \""+password+"\"" + 
-					       "where s.id = \""+studentID+"\"";
+			String query = "update course as c" + 
+					       "set c.name = \""+name+"\", c.duration = \""+duration+"\", c.lecturer_id = \""+lecturer+"\"" + 
+					       "where l.id = \""+courseID+"\"";
 			System.out.println(query);
 			
 			try {
@@ -440,13 +436,13 @@ public class StudentServiceImpl implements IStudentService {
 			db.disconnect();
 			
 		}
-		// Get the updated student
-		return getStudentByID(studentID);
+		// Get the updated course
+		return getCourseByID(courseID);
 	}
 	
 	/**
 	 *
-	 * @return ArrayList<String> Array of student id list will be return
+	 * @return ArrayList<String> Array of course id list will be return
 	 * 
 	 * @throws SQLException
 	 *             - Thrown when database access error occurs or this method is
@@ -463,11 +459,11 @@ public class StudentServiceImpl implements IStudentService {
 	 * @throws NullPointerException
 	 *             - Service is not available
 	 */
-	private ArrayList<String> getStudentIDs(){
+	private ArrayList<String> getCourseIDs(){
 		
 		ArrayList<String> arrayList = new ArrayList<String>();
 		/*
-		 * List of student IDs will be retrieved from StudentQuery.xml
+		 * List of course IDs will be retrieved from CourseQuery.xml
 		 */
 //		try {
 //			connection = DBConnectionUtil.getDBConnection();
@@ -502,7 +498,7 @@ public class StudentServiceImpl implements IStudentService {
 			String query;
 		
 				
-			query = "select s.id from student as s";
+			query = "select s.id from course as s";
 			System.out.println(query);
 				
 			

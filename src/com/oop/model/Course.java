@@ -2,22 +2,22 @@ package com.oop.model;
 
 public class Course {
 
-	private int id;
+	private String id;
 	private String name;
 	private String duration;
-	private int tutorId;
+	private String lecturerId;
 	
 	/**
 	 * @return the id
 	 */
-	public int getID() {
+	public String getID() {
 		return this.id;
 	}
 	
 	/**
 	 * @param id the id to set
 	 */
-	public void setID(int newId) {
+	public void setID(String newId) {
 		this.id = newId;
 	}
 
@@ -50,17 +50,17 @@ public class Course {
 	}
 
 	/**
-	 * @return the tutorId
+	 * @return the lecturerId
 	 */
-	public int getTutorId() {
-		return this.tutorId;
+	public String getLecturerId() {
+		return this.lecturerId;
 	}
 
 	/**
-	 * @param tutorId the tutorId to set
+	 * @param lecturerId the lecturerId to set
 	 */
-	public void setFacultyName(int newTutorId) {
-		this.tutorId = newTutorId;
+	public void setLecturerId(String newLecturerId) {
+		this.lecturerId = newLecturerId;
 	}
 
 	@Override
@@ -69,6 +69,6 @@ public class Course {
 		return "Course ID = " + id + "\n" 
 			   +"Course Name = " + name + "\n" 
 			   +"Course Duration = " + duration + "\n"
-			   +"Lecturer ID = " + tutorId + "\n";
+			   +"Lecturer ID = " + lecturerId + "\n";
 	}
 }

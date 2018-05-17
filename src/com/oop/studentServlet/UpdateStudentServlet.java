@@ -1,4 +1,4 @@
-package com.oop.servlet;
+package com.oop.studentServlet;
 
 import java.io.IOException;
 
@@ -9,19 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oop.model.Student;
+import com.oop.service.IStudentService;
+import com.oop.service.StudentServiceImpl;
+
 /**
- * Servlet implementation class ListStudentServlet
+ * Servlet implementation class UpdateStudentServlet
  */
-@WebServlet("/ListStudentServlet")
-public class ListStudentServlet extends HttpServlet {
+@WebServlet("/UpdateStudentServlet")
+public class UpdateStudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListStudentServlet() {
+    public UpdateStudentServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -37,7 +40,19 @@ public class ListStudentServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WebContent/WEB-INF/views/ListStudents.jsp");
+
+		Student student = new Student();
+		String studentID = request.getParameter("studentID");	
+		student.setID(studentID);
+		student.setName(request.getParameter("studentName"));
+		student.setEmail(request.getParameter("email"));
+		student.setUsername(request.getParameter("username"));
+		student.setPassword(request.getParameter("password"));
+		
+		IStudentService iStudentService = new StudentServiceImpl();
+		iStudentService.updateStudent(studentID, student);
+
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListStudents.jsp");
 		dispatcher.forward(request, response);
 	}
 

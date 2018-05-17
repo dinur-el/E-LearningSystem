@@ -1,4 +1,4 @@
-package com.oop.servlet;
+package com.oop.lecturerServlet;
 
 import java.io.IOException;
 
@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oop.model.Student;
-import com.oop.service.IStudentService;
-import com.oop.service.StudentServiceImpl;
+import com.oop.model.Lecturer;
+import com.oop.service.ILecturerService;
+import com.oop.service.LecturerServiceImpl;
 
 /**
- * Servlet implementation class GetStudentServlet
+ * Servlet implementation class GetLecturerServlet
  */
-@WebServlet("/GetStudentServlet")
-public class GetStudentServlet extends HttpServlet {
+@WebServlet("/GetLecturerServlet")
+public class GetLecturerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetStudentServlet() {
+    public GetLecturerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,12 +42,12 @@ public class GetStudentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
- 		String studentID = request.getParameter("studentID");			
-		IStudentService iStudentService = new StudentServiceImpl();
-		Student student = iStudentService.getStudentByID(studentID);
+ 		String lecturerID = request.getParameter("lecturerID");			
+		ILecturerService iLecturerService = new LecturerServiceImpl();
+		Lecturer lecturer = iLecturerService.getLecturerByID(lecturerID);
 
-		request.setAttribute("student", student);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/GetStudent.jsp");
+		request.setAttribute("lecturer", lecturer);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/GetLecturer.jsp");
 		dispatcher.forward(request, response);
 	}
 
