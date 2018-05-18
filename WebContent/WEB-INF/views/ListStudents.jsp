@@ -37,12 +37,12 @@
 			for(Student student : arrayList){
 			%>
 			 <tr>
-				<td> <%=student.getStudentID() %> </td>
+				<td> <%=student.getID() %> </td>
 				<td> <%=student.getName() %> </td>
 				<td> <%=student.getEmail() %> </td>
 				<td> 
 				<form method="POST" action="GetStudentServlet">
-				<input type="hidden" name="studentID" value="<%=student.getStudentID()%>"/>
+				<input type="hidden" name="studentID" value="<%=student.getID()%>"/>
 				 <input type="submit" value= "Select Student" class="select-button" /> 
 				 </form>
 				 </td>	

@@ -1,5 +1,6 @@
 package com.oop.service;
 
+import com.oop.model.Course;
 import com.oop.model.Lecturer;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -50,4 +51,11 @@ public interface ILecturerService {
 	 * @param lecturerID
 	 */
 	public void removeLecturer(String lecturerID);
+	
+	/**
+	 * Get a list of Courses
+	 * 
+	 * @param lecturerID
+	 */
+	public ArrayList<Course> getCourseList(String lecturerID);
 }

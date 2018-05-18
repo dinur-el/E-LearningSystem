@@ -14,6 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import com.oop.model.Course;
 import com.oop.model.Lecturer;
 import com.oop.util.CommonConstants;
 import com.oop.util.DBConnectionUtil;
@@ -537,5 +538,35 @@ public class LecturerServiceImpl implements ILecturerService {
 			}
 		}
 		return arrayList;
+	}
+	
+	
+	public ArrayList<Course> getCourseList(String lecturerID){
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		
+		try {
+			db.connect();
+			String query;
+			Course course = new Course();
+				
+			query = "select c.id, c.name from course as c "
+					+ "where c.lecturer_id =\""+lecturerID+"\"";
+			System.out.println(query);
+				
+			
+			ResultSet resultSet = db.select(query);
+
+			while (resultSet.next()) {
+				course.setID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				course.setName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				
+				courseList.add(course);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		
+		return courseList;
 	}
 }

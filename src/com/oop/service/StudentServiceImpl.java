@@ -14,6 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import com.oop.model.Course;
 import com.oop.model.Student;
 import com.oop.util.CommonConstants;
 import com.oop.util.CommonUtil;
@@ -341,22 +342,23 @@ public class StudentServiceImpl implements IStudentService {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			/*
-			 * Close prepared statement and database connectivity at the end of
-			 * transaction
-			 */
-			try {
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				log.log(Level.SEVERE, e.getMessage());
-			}
 		}
+//		 finally {
+//			/*
+//			 * Close prepared statement and database connectivity at the end of
+//			 * transaction
+//			 */
+//			try {
+//				if (preparedStatement != null) {
+//					preparedStatement.close();
+//				}
+//				if (connection != null) {
+//					connection.close();
+//				}
+//			} catch (SQLException e) {
+//				log.log(Level.SEVERE, e.getMessage());
+//			}
+//		}
 		return studentList;
 	}
 
@@ -514,22 +516,54 @@ public class StudentServiceImpl implements IStudentService {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			/*
-			 * Close prepared statement and database connectivity at the end of
-			 * transaction
-			 */
-			try {
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				log.log(Level.SEVERE, e.getMessage());
-			}
-		}
+		} 
+//		finally {
+//			/*
+//			 * Close prepared statement and database connectivity at the end of
+//			 * transaction
+//			 */
+//			try {
+//				if (preparedStatement != null) {
+//					preparedStatement.close();
+//				}
+//				if (connection != null) {
+//					connection.close();
+//				}
+//			} catch (SQLException e) {
+//				log.log(Level.SEVERE, e.getMessage());
+//			}
+//		}
 		return arrayList;
 	}
+	
+	public ArrayList<Course> getStudentCourses(String studentID){
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		
+		try {
+			db.connect();
+			String query;
+			Course course = new Course();
+				
+			query = "select c.id, c.name from student as s, course as c, enrolment e "
+					+ "where s.id = e.student_id AND c.id = e.course_id AND e.student_id =\""+studentID+"\"";
+			System.out.println(query);
+				
+			
+			ResultSet resultSet = db.select(query);
+
+			while (resultSet.next()) {
+				course.setID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				course.setName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				
+				courseList.add(course);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		
+		return courseList;
+	}
+	
+	
 }
