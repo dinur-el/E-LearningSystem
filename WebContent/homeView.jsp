@@ -21,8 +21,16 @@
 				<td><input type="text" name="emailAddress" /></td>
 			</tr>
 			<tr>
+				<td>Username</td>
+				<td><input type="text" name="username" /></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="text" name="password" /></td>
+			</tr>
+			<tr>
 				<a href="WebContent/WEB-INF/views/ListStudents.jsp">Student List</a>
-				<!--  <td colspan="2"><input type="submit" value="Add Student" class="add-button" /> </td>-->
+				  <td colspan="2"><input type="submit" value="Add Student" class="add-button" /> </td>
 			</tr>
 			<tr>	
 				<td colspan="2"><input type="reset" value="Reset" class="reset-button" /></td>

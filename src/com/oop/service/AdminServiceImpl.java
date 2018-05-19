@@ -51,29 +51,29 @@ public class AdminServiceImpl implements IAdminService {
 			
 			
 	
-			query = "select a.id from admin as a, "
+			query = "select a.id from admin a "
 					+ "where a.username =\""+username+"\" AND a.password =\""+password+"\"";
 			System.out.println(query);
 				
 			ResultSet resultSet = db.select(query);
 				
-			if(resultSet.wasNull()) {	
+			if(!resultSet.next()) {	
 				
-				query = "select s.id from student as s, "
-						+ "where s.username =\""+username+"\" AND a.password =\""+password+"\"";
+				query = "select s.id from student s "
+						+ "where s.username =\""+username+"\" AND s.password =\""+password+"\"";
 				System.out.println(query);
 				
 			
 				resultSet = db.select(query);
 
-				if(resultSet.wasNull()) {
-					query = "select l.id from lecturer as l, "
-							+ "where l.username =\""+username+"\" AND a.password =\""+password+"\"";
+				if(!resultSet.next()) {
+					query = "select l.id from lecturer l "
+							+ "where l.username =\""+username+"\" AND l.password =\""+password+"\"";
 					System.out.println(query);
 				
 					resultSet = db.select(query);
 				
-					if(resultSet.wasNull()) {
+					if(!resultSet.next()) {
 						userType = null;
 					}
 					

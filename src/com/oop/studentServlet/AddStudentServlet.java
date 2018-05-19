@@ -40,20 +40,42 @@ public class AddStudentServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-
+		
+		String msg="";
 		Student student = new Student();
 		
-		student.setName(request.getParameter("studentName"));
-		student.setEmail(request.getParameter("emailAddress"));
-		student.setUsername(request.getParameter("username"));
-		student.setPassword(request.getParameter("password"));
+		String name=(request.getParameter("studentName"));
+		String email=(request.getParameter("emailAddress"));
+		String username=(request.getParameter("username"));
+		String password=(request.getParameter("password"));
+		String passConf=(request.getParameter("password_confirm"));
+		System.out.println("wada");
+		
+//		if(name==null) msg="student name is required\n";
+//		if(email==null) msg+="email address is required\n";
+//		if(username==null) msg+="username is required\n";
+//		if(password==null) msg+="password is required\n";
+//		if(passConf==null) msg+="password confirmation is required\n";
+//		
+//		if(msg=="") {
+		
+			student.setName(name);
+			student.setEmail(email);
+			student.setUsername(username);
+			student.setPassword(password);
+		
+			IStudentService iStudentService = new StudentServiceImpl();
+			iStudentService.addStudent(student);
 
-		IStudentService iStudentService = new StudentServiceImpl();
-		iStudentService.addStudent(student);
-
-		request.setAttribute("student", student);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListStudents.jsp");
-		dispatcher.forward(request, response);
+		
+			request.setAttribute("student", student);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/dashboard.html");
+			dispatcher.forward(request, response);
+//		}
+		
+//		else {
+//			out.println("");
+//		}
 	}
 
 }
