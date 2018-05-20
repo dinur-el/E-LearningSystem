@@ -7,7 +7,7 @@
     <welcome-file>homeView.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>register.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>Student_Grades.jsp</welcome-file>
   </welcome-file-list>
 
 <servlet>

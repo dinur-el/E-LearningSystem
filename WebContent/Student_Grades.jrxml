@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Student_Grades" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0223f40e-343c-4d72-86cd-73ecca96b551">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT c.name AS column_name, e.grade, s.name AS student_name, e.course_status
+FROM student s, course c, enrolment e
+WHERE s.id=e.student_id AND c.id=e.course_id]]>
+	</queryString>
+	<field name="column_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="column_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="course"/>
+	</field>
+	<field name="grade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="grade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="enrolment"/>
+	</field>
+	<field name="student_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="student_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="student"/>
+	</field>
+	<field name="course_status" class="java.lang.String"/>
+	<sortField name="column_name" order="Descending"/>
+	<sortField name="grade" order="Descending"/>
+	<sortField name="student_name" order="Descending"/>
+	<group name="column_name">
+		<groupExpression><![CDATA[$F{column_name}]]></groupExpression>
+	</group>
+	<group name="grade">
+		<groupExpression><![CDATA[$F{grade}]]></groupExpression>
+	</group>
+	<group name="student_name">
+		<groupExpression><![CDATA[$F{student_name}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="79" uuid="64fb4280-a34e-418c-b329-690cda6c9520"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30"/>
+				</textElement>
+				<text><![CDATA[Student Grades]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="74" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="550" height="42" uuid="2cf87b8c-5424-47ed-b650-4a3c5823ab41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="410" y="0" width="142" height="60" uuid="a7ddf13f-5442-49a1-8453-ce6b8212c190">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="56d731bf-cdd7-4f0a-9ce2-d384ec600dcc"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Grade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="180" height="60" uuid="1e15c530-c743-4d48-8ed4-a4fa9eb5262f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6bd24c86-3481-462d-a12a-95223afa9b6f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Column Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="0" width="140" height="60" uuid="145e4b16-ff74-420f-bfed-57b5f7cef3e4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e935ca3-b1a3-4e05-91f4-ed01f20f5a51"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Course Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="71" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-20" y="40" width="595" height="31" forecolor="#FFFFFF" backcolor="#030303" uuid="658cd62c-4bfe-461a-8ca2-09e1a9e203b8"/>
+			</rectangle>
+			<textField>
+				<reportElement x="410" y="0" width="142" height="40" forecolor="#030303" uuid="60afe520-ba1c-428d-b64e-9aef168ae30f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="56d731bf-cdd7-4f0a-9ce2-d384ec600dcc"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{grade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="240" height="40" forecolor="#030303" uuid="9c53dbf0-7801-4ec6-96cc-b142408d09c8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6bd24c86-3481-462d-a12a-95223afa9b6f"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{column_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="140" height="40" forecolor="#030303" uuid="c4ae855a-7640-4012-a077-cb6964c3cf68">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e935ca3-b1a3-4e05-91f4-ed01f20f5a51"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{course_status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="65" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
