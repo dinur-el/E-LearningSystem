@@ -536,7 +536,7 @@ public class StudentServiceImpl implements IStudentService {
 		return arrayList;
 	}
 	
-	public ArrayList<Course> getStudentCourses(String studentID){
+	public ArrayList<Course> getStudentCourses(String username){
 		ArrayList<Course> courseList = new ArrayList<Course>();
 		
 		try {
@@ -545,7 +545,7 @@ public class StudentServiceImpl implements IStudentService {
 			Course course = new Course();
 				
 			query = "select c.id, c.name from student as s, course as c, enrolment e "
-					+ "where s.id = e.student_id AND c.id = e.course_id AND e.student_id =\""+studentID+"\"";
+					+ "where s.id = e.student_id AND c.id = e.course_id AND s.username =\""+username+"\"";
 			System.out.println(query);
 				
 			

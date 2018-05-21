@@ -5,11 +5,13 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.oop.model.Student;
+import com.oop.model.User;
 import com.oop.service.AdminServiceImpl;
 import com.oop.service.IAdminService;
 
@@ -25,14 +27,12 @@ public class LoginServlet extends HttpServlet {
      */
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -49,26 +49,31 @@ public class LoginServlet extends HttpServlet {
 		
 		IAdminService iAdminService = new AdminServiceImpl();
 		String loginValue = iAdminService.login(username, password);
+		User student = new Student();
+		
+		//request.setAttribute("student", student);
+		Cookie ck=new Cookie("username",username);//creating cookie object  
+		response.addCookie(ck);//adding cookie in the response  
+		ck.setMaxAge(5);
 		
 		if(loginValue=="student") {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/dashboard.html");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/StudentHome.jsp");
 			dispatcher.forward(request, response);
 		}
 		
 		else if(loginValue=="lecturer") {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListCourses.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/LecturerHome.jsp");
 			dispatcher.forward(request, response);
 		}
 		
 		else if(loginValue=="admin") {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListCourses.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/AdminHome.jsp");
 			dispatcher.forward(request, response);
-			System.out.println("admin");
 		}
 		
 		else {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListStudents.jsp");
-			dispatcher.forward(request, response);
+			//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListStudents.jsp");
+			//dispatcher.forward(request, response);
 		}
 	}
 

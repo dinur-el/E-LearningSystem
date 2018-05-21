@@ -1,8 +1,10 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<%@page import="com.oop.model.Course"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -23,44 +25,43 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
-
-
-<div class="login">
+	<div class="login">
     <div class="container">
 
         <div class="col-lg-8 col-lg-offset-2 login-box" >
 
             <div class="col-lg-6 right-box">
-                <h1>Register</h1>
+                <h1>Update Course</h1>
+                
+                <%Course course = (Course) request.getAttribute("course");%>
 				
-				<form method="POST" action="AddStudentServlet">
+				<form method="POST" action="UpdateCourseServlet">
                 <div class="form">
 
                     <div class="form-group">
-                        <label for="studentName">Name </label>
-                        <input type="text" name="studentName" class="form-control">
+                        <label for="courseName">Course Name </label>
+                        <input type="text" name="courseName" class="form-control" value="<%=course.getName()%>">
                     </div>
 
                     <div class="form-group">
-                        <label for="emailAddress">Email</label>
-                        <input type="email" name="emailAddress" class="form-control">
+                        <label for="lecturerId">Lecturer Id</label>
+                        <input type="email" name="lecturerId" class="form-control" value="<%=course.getLecturerId()%>">
                     </div>
                     
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" class="form-control">
+                        <label for="category">Category</label>
+                        <input type="text" name="category" class="form-control" value="<%=course.getCategory()%>">
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" class="form-control" value="<%=course.getDescription()%>">
                     </div>
 
 
                     <div class="login-button">
-                        <button class="btn btn-success">Register</button>
+                        <button class="btn btn-success">Update</button>
                     </div>
 
                     <br />
@@ -72,8 +73,8 @@
             </div>  <!-- right-box -->
 
             <div class="col-lg-6 left-box">
-                <h1>Register</h1>
-                <p>Lorem ipsum dolor sit amet, sed ei doming nostrum inciderint</p>
+                <h1>Update Course</h1>
+              
                 <br>
             </div>
 
@@ -82,12 +83,6 @@
     </div>
 </div>
 
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
+	
 </body>
 </html>

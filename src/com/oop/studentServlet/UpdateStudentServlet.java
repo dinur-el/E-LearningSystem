@@ -45,7 +45,7 @@ public class UpdateStudentServlet extends HttpServlet {
 		String studentID = request.getParameter("studentID");	
 		student.setID(studentID);
 		student.setName(request.getParameter("studentName"));
-		student.setEmail(request.getParameter("email"));
+		student.setEmail(request.getParameter("emailAddress"));
 		student.setUsername(request.getParameter("username"));
 		student.setPassword(request.getParameter("password"));
 		

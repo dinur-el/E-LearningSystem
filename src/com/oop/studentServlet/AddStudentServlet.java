@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,7 +50,6 @@ public class AddStudentServlet extends HttpServlet {
 		String username=(request.getParameter("username"));
 		String password=(request.getParameter("password"));
 		String passConf=(request.getParameter("password_confirm"));
-		System.out.println("wada");
 		
 //		if(name==null) msg="student name is required\n";
 //		if(email==null) msg+="email address is required\n";
@@ -68,8 +68,10 @@ public class AddStudentServlet extends HttpServlet {
 			iStudentService.addStudent(student);
 
 		
-			request.setAttribute("student", student);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/dashboard.html");
+			Cookie ck=new Cookie("username",username);//creating cookie object  
+			response.addCookie(ck);//adding cookie in the response  
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/StudentHome.jsp");
 			dispatcher.forward(request, response);
 //		}
 		

@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>E-Learning</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -61,24 +61,29 @@
                 </div>
                 <div class="panel-body">
 
-                    <form action="">
+                    <form method="POST" action="AddCourseServlet">
 
                         <div class="form-group">
                             <label for="name">Course Name: </label>
-                            <input class="form-control" type="text" name="name" id="name">
+                            <input class="form-control" type="text" name="name" required="required">
                         </div>
 
                         <div class="form-group">
-                            <label for="duration">Course Name: </label>
-                            <input class="form-control" type="text" name="duration" id="duration">
+                            <label for="category">Category: </label>
+                            <input class="form-control" type="text" name="category" required="required">
                         </div>
 
                         <div class="form-group">
-                            <label for="lecturer">Course Name: </label>
-                            <input class="form-control" type="text" name="lecturer" id="lecturer">
+                            <label for="lecturer">Lecturer: </label>
+                            <input class="form-control" type="text" name="lecturer" required="required">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description">Description: </label>
+                            <input class="form-control" type="text" name="description">
                         </div>
 
-                        <button class="btn btn-block btn-primary">Add / Edit Course</button>
+                        <button class="btn btn-block btn-primary">Add Course</button>
 
                     </form>
 

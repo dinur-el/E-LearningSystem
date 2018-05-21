@@ -1,4 +1,6 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Admin Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">E-Learning</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -51,7 +53,7 @@
     <div class="row">
         <div class="col-md-8 col-xs-12 col-md-offset-2">
 
-            <h3>My Courses <br /> <small>Enrolled</small></h3>
+            <h3>Admin <br /> <small>Options</small></h3>
 
             <br />
 
@@ -59,128 +61,72 @@
             <div class="row">
 
                 <div class="col-xs-4">
-                    <a href="#">
+                    <a href="/E-LearningSystem/addCourse.jsp">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Panel title</h3>
+                                <h3 class="panel-title">Add a new Course</h3>
                             </div>
-                            <div class="panel-body">
-                                Panel body ...
+                            <div class="panel-heading">
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-xs-4">
-                    <a href="#">
+                    <a href="/E-LearningSystem/addLecturer.jsp">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Panel title</h3>
+                                <h3 class="panel-title">Add a new Lecturer</h3>
                             </div>
-                            <div class="panel-body">
-                                Panel body ...
+                            <div class="panel-heading">
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-xs-4">
-                    <a href="#">
+                    <a href="/E-LearningSystem/ListStudents.jsp">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Panel title</h3>
+                                <h3 class="panel-title">Student List</h3>
                             </div>
-                            <div class="panel-body">
-                                Panel body ...
+                            <div class="panel-heading">
                             </div>
                         </div>
                     </a>
                 </div>
-
+                
+       
             </div>
 
 
             <div class="row">
 
                 <div class="col-xs-4">
-                    <a href="#">
+                    <a href="/E-LearningSystem/ListCourse.jsp">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Panel title</h3>
+                                <h3 class="panel-title">Course List</h3>
                             </div>
-                            <div class="panel-body">
-                                Panel body ...
+                            <div class="panel-heading">
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-xs-4">
-                    <a href="#">
+                    <a href="/E-LearningSystem/ListLecturers.jsp">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Panel title</h3>
+                                <h3 class="panel-title">Lecturer List</h3>
                             </div>
-                            <div class="panel-body">
-                                Panel body ...
+                            <div class="panel-heading">
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-xs-4">
-                    <a href="#">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel title</h3>
-                            </div>
-                            <div class="panel-body">
-                                Panel body ...
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                
 
             </div>
 
-            <div class="row">
-
-                <div class="col-xs-4">
-                    <a href="#">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel title</h3>
-                            </div>
-                            <div class="panel-body">
-                                Panel body ...
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-4">
-                    <a href="#">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel title</h3>
-                            </div>
-                            <div class="panel-body">
-                                Panel body ...
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-4">
-                    <a href="#">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel title</h3>
-                            </div>
-                            <div class="panel-body">
-                                Panel body ...
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-
-        </div>
+           
     </div>
 
 </div><!-- /.container -->

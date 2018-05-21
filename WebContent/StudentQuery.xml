@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--SQL queries -->
+<Querys>
+
+	<!-- Create table employee Query -->
+	<query id="create_employee_table">
+        <![CDATA[
+            CREATE TABLE student(
+				studentID varchar(10) not null,
+				studentName varchar(20),
+				email  varchar(50),
+				primary key (studentID)
+			)
+        ]]>
+	</query>
+
+	<!-- DROP TABLE EMPLOYEES Query -->
+	<query id="drop_table">
+         <![CDATA[        
+            DROP TABLE IF EXISTS student 
+        ]]>
+	</query>
+
+	<!-- Select all customer orders Query -->
+	<query id="insert_student">
+        <![CDATA[
+          	insert into student (name, email) 
+          	values (?, ?)
+        ]]>
+	</query>
+
+	<!-- Select a particular employee by id Query -->
+	<query id="employee_by_id">
+         <![CDATA[        
+            select * from employee where employee.employeeID = ?
+        ]]>
+	</query>
+
+	<!-- Select all employees -->
+	<query id="all_employees">
+         <![CDATA[        
+            select * from employee
+        ]]>
+	</query>
+
+	<!-- Delete a particular employee by id Query -->
+	<query id="remove_employee">
+         <![CDATA[        
+            delete from employee where employee.employeeID = ?
+        ]]>
+	</query>
+	
+	<!-- Update a particular employee by id Query -->
+	<query id="update_employee">
+         <![CDATA[        
+            update employee as e 
+            set e.employeeName = ?, e.designation = ?, e.faculty = ?, e.department = ?, e.address = ?, e.qualifications = ?, e.gender = ? 
+            where e.employeeID = ?
+        ]]>
+	</query>
+	
+		<!-- Get employee IDs Query -->
+	<query id="employee_ids">
+         <![CDATA[        
+            select e.employeeID from employee as e
+        ]]>
+	</query>
+
+</Querys>

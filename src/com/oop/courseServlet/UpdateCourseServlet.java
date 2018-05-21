@@ -46,8 +46,9 @@ public class UpdateCourseServlet extends HttpServlet {
 		String courseID = request.getParameter("courseID");	
 		course.setID(courseID);
 		course.setName(request.getParameter("courseName"));
-		course.setDuration(request.getParameter("duration"));
-		course.setLecturerId(request.getParameter("lecturerID"));
+		course.setCategory(request.getParameter("category"));
+		course.setLecturerId(request.getParameter("lecturerId"));
+		course.setDescription(request.getParameter("description"));
 		
 		ICourseService iCourseService = new CourseServiceImpl();
 		iCourseService.updateCourse(courseID, course);

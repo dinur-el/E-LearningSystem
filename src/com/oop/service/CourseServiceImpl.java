@@ -58,22 +58,22 @@ public class CourseServiceImpl implements ICourseService {
 	 * 
 	 */
 	
-	public static void createCourseTable() {
-
-		try {
-			connection = DBConnectionUtil.getDBConnection();
-			statement = connection.createStatement();
-			// Drop table if already exists and as per SQL query available in
-			// Query.xml
-			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_DROP_TABLE));
-			// Create new courses table as per SQL query available in
-			// Query.xml
-			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_CREATE_TABLE));
-
-		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
-			log.log(Level.SEVERE, e.getMessage());
-		}
-	}
+//	public static void createCourseTable() {
+//
+//		try {
+//			connection = DBConnectionUtil.getDBConnection();
+//			statement = connection.createStatement();
+//			// Drop table if already exists and as per SQL query available in
+//			// Query.xml
+//			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_DROP_TABLE));
+//			// Create new courses table as per SQL query available in
+//			// Query.xml
+//			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_CREATE_TABLE));
+//
+//		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+//			log.log(Level.SEVERE, e.getMessage());
+//		}
+//	}
 	
 	
 	/**
@@ -137,10 +137,11 @@ public class CourseServiceImpl implements ICourseService {
 		db.connect();
 		
 		String name =course.getName();
-		String duration =course.getDuration();
+		String category =course.getCategory();
 		String lecturer =course.getLecturerId();
+		String description =course.getDescription();
 		
-		String query = "insert into course (name, duration, tutor_id) values (\""+name+"\",\""+duration+"\",\""+lecturer+"\")";
+		String query = "insert into course (name, lecturer_id, category, description) values (\""+name+"\",\""+lecturer+"\",\""+category+"\",\""+description+"\")";
 		System.out.println(query);
 		
 		try {
@@ -328,10 +329,11 @@ public class CourseServiceImpl implements ICourseService {
 			while (resultSet.next()) {
 				Course course = new Course();
 	
-				course.setID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
-				course.setName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
-				course.setDuration(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
-				course.setLecturerId(resultSet.getString(CommonConstants.COLUMN_INDEX_FOUR));
+				course.setID(resultSet.getString(1));
+				course.setName(resultSet.getString(2));
+				course.setLecturerId(resultSet.getString(3));
+				course.setCategory(resultSet.getString(4));
+				course.setDescription(resultSet.getString(5));
 				
 				courseList.add(course);
 			}
@@ -409,12 +411,13 @@ public class CourseServiceImpl implements ICourseService {
 			db.connect();
 			
 			String name =course.getName();
-			String duration =course.getDuration();
+			String duration =course.getCategory();
 			String lecturer =course.getLecturerId();
+			String description = course.getDescription();
 			
 			
 			String query = "update course as c" + 
-					       "set c.name = \""+name+"\", c.duration = \""+duration+"\", c.lecturer_id = \""+lecturer+"\"" + 
+					       "set c.name = \""+name+"\", c.duration = \""+duration+"\", c.lecturer_id = \""+lecturer+"\", c.description =\""+description+"\"" + 
 					       "where l.id = \""+courseID+"\"";
 			System.out.println(query);
 			
@@ -505,27 +508,28 @@ public class CourseServiceImpl implements ICourseService {
 			ResultSet resultSet = db.select(query);
 
 			while (resultSet.next()) {
-				arrayList.add(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				arrayList.add(resultSet.getString(1));
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			/*
-			 * Close prepared statement and database connectivity at the end of
-			 * transaction
-			 */
-			try {
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				log.log(Level.SEVERE, e.getMessage());
-			}
-		}
+		} 
+//		finally {
+//			/*
+//			 * Close prepared statement and database connectivity at the end of
+//			 * transaction
+//			 */
+//			try {
+//				if (preparedStatement != null) {
+//					preparedStatement.close();
+//				}
+//				if (connection != null) {
+//					connection.close();
+//				}
+//			} catch (SQLException e) {
+//				log.log(Level.SEVERE, e.getMessage());
+//			}
+//		}
 		return arrayList;
 	}
 }

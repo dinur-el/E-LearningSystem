@@ -145,7 +145,7 @@ public class LecturerServiceImpl implements ILecturerService {
 		String password =lecturer.getPassword();
 		
 		
-		String query = "insert into lecturer (name, educationLevel, email, specialization, username, password) values (\""+name+"\",\""+educationLevel+"\",\""+email+"\",\""+specializtion+"\",\""+username+"\",\""+password+"\")";
+		String query = "insert into lecturer (name, education_level, email, specialization, username, password) values (\""+name+"\",\""+educationLevel+"\",\""+email+"\",\""+specializtion+"\",\""+username+"\",\""+password+"\")";
 		System.out.println(query);
 		
 		try {
@@ -541,7 +541,7 @@ public class LecturerServiceImpl implements ILecturerService {
 	}
 	
 	
-	public ArrayList<Course> getCourseList(String lecturerID){
+	public ArrayList<Course> getCourseList(String username){
 		ArrayList<Course> courseList = new ArrayList<Course>();
 		
 		try {
@@ -549,8 +549,8 @@ public class LecturerServiceImpl implements ILecturerService {
 			String query;
 			Course course = new Course();
 				
-			query = "select c.id, c.name from course as c "
-					+ "where c.lecturer_id =\""+lecturerID+"\"";
+			query = "select c.id, c.name from course as c, lecturer as l "
+					+ "where c.lecturer_id = l.id AND l.username =\""+username+"\"";
 			System.out.println(query);
 				
 			
@@ -559,6 +559,7 @@ public class LecturerServiceImpl implements ILecturerService {
 			while (resultSet.next()) {
 				course.setID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
 				course.setName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				System.out.println(course.getName());
 				
 				courseList.add(course);
 			}

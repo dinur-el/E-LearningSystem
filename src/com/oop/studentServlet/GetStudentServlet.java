@@ -47,7 +47,7 @@ public class GetStudentServlet extends HttpServlet {
 		Student student = iStudentService.getStudentByID(studentID);
 
 		request.setAttribute("student", student);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/GetStudent.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/UpdateStudent.jsp");
 		dispatcher.forward(request, response);
 	}
 

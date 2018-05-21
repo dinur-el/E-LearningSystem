@@ -1,7 +1,7 @@
-<%@page import="com.oop.model.Student"%>
+<%@page import="com.oop.model.Lecturer"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.oop.service.StudentServiceImpl"%>
-<%@page import="com.oop.service.IStudentService"%>
+<%@page import="com.oop.service.LecturerServiceImpl"%>
+<%@page import="com.oop.service.ILecturerService"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -54,35 +54,41 @@
 	
 	  <div align="left">
 		<table border="1" cellpadding="12">
-		 <caption><h2>List of Students</h2></caption>
+		 <caption><h2>List of Lecturers</h2></caption>
 		 
 		  <tr>
-                <th>Student ID</th>		
-                <th>Student Name</th>
-                <th>Address</th>
-                <th>Update</th>
-                <th>Delete</th>
+                <th>Lecturer ID</th>		
+                <th>Lecturer Name</th>
+                <th>Education Level</th>
+                <th>Email</th>
+                <th>Specialization</th>
+                <th>Username</th>
+                <th>Password</th>
             </tr>
             <%
-            IStudentService iStudentService = new StudentServiceImpl();
-			ArrayList<Student> arrayList = iStudentService.getStudents();
+            ILecturerService iStudentService = new LecturerServiceImpl();
+			ArrayList<Lecturer> arrayList = iStudentService.getLecturers();
 			
-			for(Student student : arrayList){
+			for(Lecturer lecturer : arrayList){
 			%>
 			 <tr>
-				<td> <%=student.getID() %> </td>
-				<td> <%=student.getName() %> </td>
-				<td> <%=student.getEmail() %> </td>
+				<td> <%=lecturer.getID() %> </td>
+				<td> <%=lecturer.getName() %> </td>
+				<td> <%=lecturer.getEducationLevel() %> </td>
+				<td> <%=lecturer.getEmail() %> </td>
+				<td> <%=lecturer.getSpecialization() %> </td>
+				<td> <%=lecturer.getUsername() %> </td>
+				<td> <%=lecturer.getPassword() %> </td>
 				<td> 
-				<form method="POST" action="GetStudentServlet">
-				<input type="hidden" name="studentID" value="<%=student.getID()%>"/>
-				 <input type="submit" value= "Update Student" class="select-button" /> 
+				<form method="POST" action="GetLecturerServlet">
+				<input type="hidden" name="lecturerID" value="<%=lecturer.getID()%>"/>
+				 <input type="submit" value= "Update Lecturer" class="select-button" /> 
 				 </form>
 				 </td>	
 				 <td> 
-				<form method="POST" action="DeleteStudentServlet">
-				<input type="hidden" name="studentID" value="<%=student.getID()%>"/>
-				 <input type="submit" value= "Delete Student" class="select-button" /> 
+				<form method="POST" action="DeleteLecturerServlet">
+				<input type="hidden" name="lecturerID" value="<%=lecturer.getID()%>"/>
+				 <input type="submit" value= "Delete Lecturer" class="select-button" /> 
 				 </form>
 				 </td>	
 				</tr>			

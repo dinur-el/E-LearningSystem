@@ -44,15 +44,24 @@ public class AddCourseServlet extends HttpServlet {
 
 		Course course = new Course();
 		
-		course.setName(request.getParameter("courseName"));
-		course.setDuration(request.getParameter("duration"));
-		course.setLecturerId(request.getParameter("lecturerID"));
-
+		String name=(request.getParameter("name"));
+		String category=(request.getParameter("category"));
+		String lecturer=(request.getParameter("lecturer"));
+		String description=(request.getParameter("description"));
+		
+		course.setName(name);
+		course.setCategory(category);
+		course.setLecturerId(lecturer);
+		course.setDescription(description);
+		System.out.println(name);
+		System.out.println(category);
+		System.out.println(lecturer);
+		
 		ICourseService iCourseService = new CourseServiceImpl();
 		iCourseService.addCourse(course);
 
 		request.setAttribute("course", course);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListCourses.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/AdminHome.jsp");
 		dispatcher.forward(request, response);
 	}
 
