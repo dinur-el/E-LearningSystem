@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>New Data Adapter 1</name><driver>com.mysql.jdbc.Driver</driver><username>root</username><password></password><savePassword>true</savePassword><url>jdbc:mysql://localhost/elearningdb</url><database></database><serverAddress></serverAddress><classpath>E:\E-LearningSystem\E-LearningSystem\WebContent\WEB-INF\lib\mysql-connector-java-8.0.11.jar</classpath></jdbcDataAdapter>
