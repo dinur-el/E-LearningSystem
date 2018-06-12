@@ -61,7 +61,7 @@ public class AddCourseServlet extends HttpServlet {
 		iCourseService.addCourse(course);
 
 		request.setAttribute("course", course);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/AdminHome.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminHome.jsp");
 		dispatcher.forward(request, response);
 	}
 

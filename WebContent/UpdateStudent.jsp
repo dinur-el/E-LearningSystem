@@ -41,22 +41,22 @@
 
                     <div class="form-group">
                         <label for="studentName">Name </label>
-                        <input type="text" name="studentName" class="form-control" value="<%=student.getName()%>">
+                        <input type="text" name="studentName" class="form-control" value="<%=student.getName()%>" required="required">
                     </div>
 
                     <div class="form-group">
                         <label for="emailAddress">Email</label>
-                        <input type="email" name="emailAddress" class="form-control" value="<%=student.getEmail()%>">
+                        <input type="email" name="emailAddress" class="form-control" value="<%=student.getEmail()%>" required="required">
                     </div>
                     
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" name="username" class="form-control" value="<%=student.getUsername()%>">
+                        <input type="text" name="username" class="form-control" value="<%=student.getUsername()%>" required="required">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control" value="<%=student.getPassword()%>">
+                        <input type="password" name="password" class="form-control" value="<%=student.getPassword()%>" required="required">
                     </div>
 
 

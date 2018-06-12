@@ -42,11 +42,11 @@ public class DeleteCourseServlet extends HttpServlet {
 		response.setContentType("text/html");
 
 		String courseID = request.getParameter("courseID");			
-		
+		System.out.println(courseID);
 		ICourseService iCourseService = new CourseServiceImpl();
 		iCourseService.removeCourse(courseID);
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListCourses.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListCourse.jsp");
 		dispatcher.forward(request, response);
 	}
 

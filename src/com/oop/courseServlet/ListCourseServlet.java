@@ -37,7 +37,7 @@ public class ListCourseServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WebContent/WEB-INF/views/ListCourses.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/E-LearningSystem/ListCourses.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -38,20 +38,21 @@
 				
 				<form method="POST" action="UpdateCourseServlet">
                 <div class="form">
-
+					
+					<input type="hidden" name="courseID" value="<%=course.getID()%>"/>
                     <div class="form-group">
                         <label for="courseName">Course Name </label>
-                        <input type="text" name="courseName" class="form-control" value="<%=course.getName()%>">
+                        <input type="text" name="courseName" class="form-control" value="<%=course.getName()%>" required="required">
                     </div>
 
                     <div class="form-group">
                         <label for="lecturerId">Lecturer Id</label>
-                        <input type="email" name="lecturerId" class="form-control" value="<%=course.getLecturerId()%>">
+                        <input type="text" name="lecturerId" class="form-control" value="<%=course.getLecturerId()%>" required="required">
                     </div>
                     
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <input type="text" name="category" class="form-control" value="<%=course.getCategory()%>">
+                        <input type="text" name="category" class="form-control" value="<%=course.getCategory()%>" required="required">
                     </div>
 
                     <div class="form-group">

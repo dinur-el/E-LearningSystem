@@ -442,6 +442,9 @@ public class StudentServiceImpl implements IStudentService {
 			db.disconnect();
 			
 		}
+		else {
+			System.out.println("studentID empty");
+		}
 		// Get the updated student
 		return getStudentByID(studentID);
 	}

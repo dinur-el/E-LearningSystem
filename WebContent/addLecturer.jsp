@@ -71,17 +71,17 @@
 
                         <div class="form-group">
                             <label for="educationLevel">Education Level: </label>
-                            <input class="form-control" type="text" name="educationLevel" >
+                            <input class="form-control" type="text" name="educationLevel" required="required">
                         </div>
 
                         <div class="form-group">
                             <label for="emailAddress">Email: </label>
-                            <input class="form-control" type="text" name="emailAddress" required="required" >
+                            <input class="form-control" type="email" name="emailAddress" required="required" >
                         </div>
                         
                         <div class="form-group">
                             <label for="specialization">Specialization: </label>
-                            <input class="form-control" type="text" name="specialization">
+                            <input class="form-control" type="text" name="specialization" required="required">
                         </div>
 
                         <div class="form-group">

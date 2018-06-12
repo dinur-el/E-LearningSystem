@@ -61,7 +61,7 @@
             <div class="row">
 
                 <div class="col-xs-4">
-                    <a href="/WEB-INF/views/addCourse.jsp">
+                    <a href="/E-LearningSystem/addCourse.jsp">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Add a new Course</h3>
@@ -72,7 +72,7 @@
                     </a>
                 </div>
                 <div class="col-xs-4">
-                    <a href="/WEB-INF/views//addLecturer.jsp">
+                    <a href="/E-LearningSystem/addLecturer.jsp">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Add a new Lecturer</h3>
@@ -83,7 +83,7 @@
                     </a>
                 </div>
                 <div class="col-xs-4">
-                    <a href="/ListStudents.jsp">
+                    <a href="/E-LearningSystem/ListStudents.jsp">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Student List</h3>
@@ -101,7 +101,7 @@
             <div class="row">
 
                 <div class="col-xs-4">
-                    <a href="#">
+                    <a href="/E-LearningSystem/ListCourse.jsp">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Course List</h3>
@@ -112,7 +112,7 @@
                     </a>
                 </div>
                 <div class="col-xs-4">
-                    <a href="#">
+                    <a href="/E-LearningSystem/ListLecturers.jsp">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Lecturer List</h3>

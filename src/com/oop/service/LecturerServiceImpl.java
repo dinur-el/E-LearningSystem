@@ -424,8 +424,8 @@ public class LecturerServiceImpl implements ILecturerService {
 			String password = lecturer.getPassword();
 			
 			
-			String query = "update lecturer as l" + 
-					       "set l.name = \""+name+"\", l.education_level = \""+educationLevel+"\", l.email = \""+email+"\", l.specialization = \""+spcialization+"\",l.username = \""+username+"\",l.password = \""+password+"\"" + 
+			String query = "update lecturer as l\n" + 
+					       "set l.name = \""+name+"\", l.education_level = \""+educationLevel+"\", l.email = \""+email+"\", l.specialization = \""+spcialization+"\",l.username = \""+username+"\",l.password = \""+password+"\"\n" + 
 					       "where l.id = \""+lecturerID+"\"";
 			System.out.println(query);
 			

@@ -266,6 +266,10 @@ public class CourseServiceImpl implements ICourseService {
 			}
 			
 			db.disconnect();
+		} 
+		
+		else {
+			System.out.println("empty course ID");
 		}
 	}
 
@@ -411,14 +415,14 @@ public class CourseServiceImpl implements ICourseService {
 			db.connect();
 			
 			String name =course.getName();
-			String duration =course.getCategory();
+			String category =course.getCategory();
 			String lecturer =course.getLecturerId();
 			String description = course.getDescription();
 			
 			
-			String query = "update course as c" + 
-					       "set c.name = \""+name+"\", c.duration = \""+duration+"\", c.lecturer_id = \""+lecturer+"\", c.description =\""+description+"\"" + 
-					       "where l.id = \""+courseID+"\"";
+			String query = "update course as c \n" + 
+					       "set c.name = \""+name+"\",c.category = \""+category+"\", c.lecturer_id = \""+lecturer+"\", c.description =\""+description+"\"\n" + 
+					       "where c.id = \""+courseID+"\"";
 			System.out.println(query);
 			
 			try {

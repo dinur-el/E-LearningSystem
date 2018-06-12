@@ -76,16 +76,16 @@
 				<td> <%=course.getDescription() %> </td>
 				<td> 
 				<form method="POST" action="GetCourseServlet">
-				<input type="hidden" name="studentID" value="<%=course.getID()%>"/>
+				<input type="hidden" name="courseID" value="<%=course.getID()%>"/>
 				 <input type="submit" value= "Update Course" class="select-button" /> 
 				 </form>
 				 </td>	
 				 <td> 
 				<form method="POST" action="DeleteCourseServlet">
-				<input type="hidden" name="studentID" value="<%=course.getID()%>"/>
+				<input type="hidden" name="courseID" value="<%=course.getID()%>"/>
 				 <input type="submit" value= "Delete Course" class="select-button" /> 
 				 </form>
-				 </td>	
+				 </td> 
 				</tr>			
 			<%	
 			   }

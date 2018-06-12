@@ -53,7 +53,7 @@ public class UpdateCourseServlet extends HttpServlet {
 		ICourseService iCourseService = new CourseServiceImpl();
 		iCourseService.updateCourse(courseID, course);
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListCourses.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListCourse.jsp");
 		dispatcher.forward(request, response);
 	}
 

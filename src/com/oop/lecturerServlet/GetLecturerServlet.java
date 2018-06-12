@@ -25,14 +25,13 @@ public class GetLecturerServlet extends HttpServlet {
      */
     public GetLecturerServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -47,7 +46,7 @@ public class GetLecturerServlet extends HttpServlet {
 		Lecturer lecturer = iLecturerService.getLecturerByID(lecturerID);
 
 		request.setAttribute("lecturer", lecturer);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/GetLecturer.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/UpdateLectuer.jsp");
 		dispatcher.forward(request, response);
 	}
 

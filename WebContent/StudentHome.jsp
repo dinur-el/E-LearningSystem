@@ -65,14 +65,17 @@
             <!-- a row of course details -- 3 courses -->
             <div class="row">
             <%
-			Cookie ck[]=request.getCookies();  
+			//Cookie ck[]=request.getCookies();  
 			//for(int i=0;i<ck.length;i++){  
- 			String username = ck[0].getValue();
-			System.out.println(username);
+ 			//String username = ck[0].getValue();
+ 			Student student = (Student) request.getAttribute("user");
+			System.out.println(student.getUsername());
 			//}
 			IStudentService iStudentService = new StudentServiceImpl();
-			ArrayList<Course> arrayList = iStudentService.getStudentCourses(username);
-			
+			ArrayList<Course> arrayList = iStudentService.getStudentCourses(student.getUsername());
+			System.out.println(arrayList.get(0));
+			System.out.println(arrayList.get(1));
+			//System.out.println(arrayList.get(2));
 			for(Course course : arrayList){
 				System.out.println(course.getName());
 			

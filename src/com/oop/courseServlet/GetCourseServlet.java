@@ -25,7 +25,6 @@ public class GetCourseServlet extends HttpServlet {
      */
     public GetCourseServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -45,10 +44,11 @@ public class GetCourseServlet extends HttpServlet {
  		String courseID = request.getParameter("courseID");			
 		ICourseService iCourseService = new CourseServiceImpl();
 		Course course = iCourseService.getCourseByID(courseID);
-
+		
 		request.setAttribute("course", course);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/GetCourse.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/UpdateCourse.jsp");
 		dispatcher.forward(request, response);
+
 	}
 
 }

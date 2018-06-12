@@ -71,7 +71,7 @@ public class AddStudentServlet extends HttpServlet {
 			Cookie ck=new Cookie("username",username);//creating cookie object  
 			response.addCookie(ck);//adding cookie in the response  
 			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/StudentHome.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/StudentHome.jsp");
 			dispatcher.forward(request, response);
 //		}
 		

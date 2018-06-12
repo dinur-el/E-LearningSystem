@@ -56,7 +56,7 @@ public class AddLecturerServlet extends HttpServlet {
 		iLecturerService.addLecturer(lecturer);
 
 		request.setAttribute("lecturer", lecturer);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/AdminHome.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminHome.jsp");
 		dispatcher.forward(request, response);
 	}
 

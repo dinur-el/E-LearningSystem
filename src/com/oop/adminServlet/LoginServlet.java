@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oop.model.Lecturer;
 import com.oop.model.Student;
 import com.oop.model.User;
 import com.oop.service.AdminServiceImpl;
@@ -44,36 +45,38 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		System.out.println(username);
-		System.out.println(password);
-		
 		IAdminService iAdminService = new AdminServiceImpl();
 		String loginValue = iAdminService.login(username, password);
-		User student = new Student();
 		
-		//request.setAttribute("student", student);
 		Cookie ck=new Cookie("username",username);//creating cookie object  
 		response.addCookie(ck);//adding cookie in the response  
 		ck.setMaxAge(5);
 		
 		if(loginValue=="student") {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/StudentHome.jsp");
+			Student student = new Student();
+			student.setUsername(username);
+			request.setAttribute("user", student);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/StudentHome.jsp");
 			dispatcher.forward(request, response);
 		}
 		
 		else if(loginValue=="lecturer") {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/LecturerHome.jsp");
+			Lecturer lecturer = new Lecturer();
+			lecturer.setUsername(username);
+			request.setAttribute("user", lecturer);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LecturerHome.jsp");
 			dispatcher.forward(request, response);
 		}
 		
 		else if(loginValue=="admin") {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/AdminHome.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminHome.jsp");
 			dispatcher.forward(request, response);
 		}
 		
 		else {
-			//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListStudents.jsp");
-			//dispatcher.forward(request, response);
+			request.setCharacterEncoding("Invalid Username or Password");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.html");
+			dispatcher.forward(request, response);
 		}
 	}
 

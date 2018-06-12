@@ -38,30 +38,32 @@
 				
 				<form method="POST" action="UpdateLecturerServlet">
                 <div class="form">
-
+					
+					<input type="hidden" name="lecturerID" value="<%=lecturer.getID()%>"/>
+					
                     <div class="form-group">
                         <label for="lecturerName">Name </label>
-                        <input type="text" name="lecturerName" class="form-control" value="<%=lecturer.getName()%>">
+                        <input type="text" name="lecturerName" class="form-control" value="<%=lecturer.getName()%>" required="required">
                     </div>
 
                     <div class="form-group">
                         <label for="emailAddress">Email</label>
-                        <input type="email" name="emailAddress" class="form-control" value="<%=lecturer.getEmail()%>">
+                        <input type="email" name="emailAddress" class="form-control" value="<%=lecturer.getEmail()%>" required="required">
                     </div>
                     
                      <div class="form-group">
                         <label for="educationLevel">Education Level </label>
-                        <input type="text" name="educationLevel" class="form-control" value="<%=lecturer.getEducationLevel()%>">
+                        <input type="text" name="educationLevel" class="form-control" value="<%=lecturer.getEducationLevel()%>" required="required">
                     </div>
 
                     <div class="form-group">
                         <label for="specialization">Specialization</label>
-                        <input type="email" name="specialization" class="form-control" value="<%=lecturer.getSpecialization()%>">
+                        <input type="text" name="specialization" class="form-control" value="<%=lecturer.getSpecialization()%>" required="required">
                     </div>
                     
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" name="username" class="form-control" value="<%=lecturer.getUsername()%>">
+                        <input type="text" name="username" class="form-control" value="<%=lecturer.getUsername()%>" required="required">
                     </div>
 
                     <div class="form-group">

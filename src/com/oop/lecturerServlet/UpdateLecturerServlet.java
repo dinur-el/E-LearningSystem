@@ -56,7 +56,7 @@ public class UpdateLecturerServlet extends HttpServlet {
 		ILecturerService iLecturerService = new LecturerServiceImpl();
 		iLecturerService.updateLecturer(lecturerID, lecturer);
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListLecturers.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListLecturers.jsp");
 		dispatcher.forward(request, response);
 	}
 
